@@ -1,0 +1,32 @@
+name: Release Chrome Extension
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Package Extension (ZIP)
+        run: |
+          # Create a zip file containing only the extension files
+          # Exclude website, github actions, and local dev files
+          zip -r waprivacy-extension.zip . -i manifest.json content.js content.css popup.html popup.css popup.js icon16.png icon48.png icon128.png README.md PRIVACY.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: waprivacy-extension.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
