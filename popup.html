@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WA Privacy Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="card">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <svg class="logo-svg" viewBox="0 0 24 24" width="28" height="28">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#00e676"/>
+          <path d="M12 6a6 6 0 0 0-6 6c0 2.22 1.21 4.15 3 5.19l1-1.74A3.99 3.99 0 0 1 8 12c0-2.21 1.79-4 4-4s4 1.79 4 4c0 1.25-.57 2.37-1.46 3.12l1.37 1.46A5.992 5.992 0 0 0 18 12a6 6 0 0 0-6-6z" fill="#00b0ff"/>
+        </svg>
+        <div class="brand-text">
+          <h1>WA Privacy Shield</h1>
+          <span class="version">v1.0.0</span>
+        </div>
+      </div>
+      
+      <!-- Master Switch -->
+      <label class="switch master-switch" title="Toggle Privacy Shield On/Off">
+        <input type="checkbox" id="isActive">
+        <span class="slider round"></span>
+      </label>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content">
+      <!-- Group: Blur Settings -->
+      <section class="section">
+        <h2 class="section-title">Privacy Shield Settings</h2>
+        
+        <div class="settings-grid">
+          <!-- Toggle: Messages -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Chat Messages</span>
+              <span class="setting-desc">Blur text inside chat bubbles</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurMessages">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Toggle: Last Preview -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Message Previews</span>
+              <span class="setting-desc">Blur last message previews in the chat list</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurPreviews">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Toggle: Names -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Contact &amp; Group Names</span>
+              <span class="setting-desc">Blur contact and group titles</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurNames">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Toggle: Profile Pictures -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Profile Pictures</span>
+              <span class="setting-desc">Blur user and group avatar images</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurAvatars">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Toggle: Media -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Images, Videos &amp; Stickers</span>
+              <span class="setting-desc">Blur sent media attachments</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurMedia">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Toggle: Message Input -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Message Input Box</span>
+              <span class="setting-desc">Blur input text when not focused</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="blurInput">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Group: Interactive Settings -->
+      <section class="section">
+        <h2 class="section-title">Interaction &amp; Effects</h2>
+        
+        <div class="settings-grid">
+          <!-- Toggle: Hover Reveal -->
+          <div class="setting-row">
+            <div class="setting-info">
+              <span class="setting-label">Reveal on Hover</span>
+              <span class="setting-desc">Temporarily reveal content under cursor mouseover</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="revealHover">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Slider: Blur Intensity -->
+          <div class="range-container">
+            <div class="range-header">
+              <span class="setting-label">Blur Intensity</span>
+              <span id="radius-value" class="badge">8px</span>
+            </div>
+            <input type="range" id="blurRadius" min="4" max="20" step="1" value="8" class="custom-range">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="security-note">
+        <svg class="secure-icon" viewBox="0 0 24 24" width="14" height="14">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#00e676"/>
+        </svg>
+        <span>100% Offline • Zero Data Collection • Secure</span>
+      </div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

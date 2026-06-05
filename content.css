@@ -1,0 +1,180 @@
+/* ==========================================================================
+   WA Privacy Shield - Injectable Stylesheet
+   This stylesheet applies blur filters based on class names toggled on the
+   <body> element. To ensure compatibility, we use highly redundant and
+   resilient selectors targeting test-ids, classes, and structural layout.
+   ========================================================================== */
+
+:root {
+  --wa-blur-radius: 8px;
+  --wa-blur-transition-speed: 0.2s;
+}
+
+/* Base Transition for elements that can be blurred */
+body.wa-privacy-active [data-testid="msg-container"],
+body.wa-privacy-active .message-in,
+body.wa-privacy-active .message-out,
+body.wa-privacy-active div[class*="message-in"],
+body.wa-privacy-active div[class*="message-out"],
+body.wa-privacy-active [data-testid="chat-list"] span[title],
+body.wa-privacy-active [data-testid="chat-list"] [role="row"] span[dir="auto"],
+body.wa-privacy-active header span[title],
+body.wa-privacy-active header [role="button"] span[dir="auto"],
+body.wa-privacy-active header span[dir="auto"],
+body.wa-privacy-active [data-testid="conversation-info-header"] span[dir="auto"],
+body.wa-privacy-active [data-testid="contact-name"],
+body.wa-privacy-active [data-testid="chat-list"] [role="row"] [class*="last-msg"],
+body.wa-privacy-active [data-testid="chat-list"] [role="row"] [class*="preview"],
+body.wa-privacy-active [data-testid="chat-list"] [role="row"] [data-testid="last-msg-status"] ~ *,
+body.wa-privacy-active [data-testid="chat-list"] [role="row"] div > div:nth-child(2) > div:nth-child(2),
+body.wa-privacy-active img[src*="pps.whatsapp"],
+body.wa-privacy-active [data-testid="avatar"],
+body.wa-privacy-active [data-testid="chat-list"] img,
+body.wa-privacy-active header img,
+body.wa-privacy-active [data-testid="avatar-default-user"],
+body.wa-privacy-active [data-testid="avatar-default-group"],
+body.wa-privacy-active [data-testid="media-container"],
+body.wa-privacy-active [data-testid="msg-container"] img,
+body.wa-privacy-active [data-testid="msg-container"] video,
+body.wa-privacy-active [data-testid="msg-container"] [class*="image"],
+body.wa-privacy-active [data-testid="msg-container"] [class*="video"],
+body.wa-privacy-active [data-testid="msg-container"] [class*="media"],
+body.wa-privacy-active [data-testid="sticker-element"],
+body.wa-privacy-active [class*="sticker"],
+body.wa-privacy-active [class*="gif"],
+body.wa-privacy-active [class*="audio-player"],
+body.wa-privacy-active footer [role="textbox"],
+body.wa-privacy-active [data-testid="conversation-text-input"],
+body.wa-privacy-active footer .selectable-text-copyable {
+  transition: filter var(--wa-blur-transition-speed) ease-in-out, opacity var(--wa-blur-transition-speed) ease-in-out;
+}
+
+/* ==========================================================================
+   1. Messages Blurring
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-messages [data-testid="msg-container"],
+body.wa-privacy-active.wa-blur-messages .message-in,
+body.wa-privacy-active.wa-blur-messages .message-out,
+body.wa-privacy-active.wa-blur-messages div[class*="message-in"],
+body.wa-privacy-active.wa-blur-messages div[class*="message-out"] {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Messages */
+body.wa-privacy-active.wa-blur-messages.wa-reveal-hover [data-testid="msg-container"]:hover,
+body.wa-privacy-active.wa-blur-messages.wa-reveal-hover .message-in:hover,
+body.wa-privacy-active.wa-blur-messages.wa-reveal-hover .message-out:hover,
+body.wa-privacy-active.wa-blur-messages.wa-reveal-hover div[class*="message-in"]:hover,
+body.wa-privacy-active.wa-blur-messages.wa-reveal-hover div[class*="message-out"]:hover {
+  filter: blur(0px) !important;
+}
+
+/* ==========================================================================
+   2. Contact Names Blurring
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-names [data-testid="chat-list"] span[title],
+body.wa-privacy-active.wa-blur-names [data-testid="chat-list"] [role="row"] span[dir="auto"],
+body.wa-privacy-active.wa-blur-names header span[title],
+body.wa-privacy-active.wa-blur-names header [role="button"] span[dir="auto"],
+body.wa-privacy-active.wa-blur-names header span[dir="auto"],
+body.wa-privacy-active.wa-blur-names [data-testid="conversation-info-header"] span[dir="auto"],
+body.wa-privacy-active.wa-blur-names [data-testid="contact-name"] {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Contact Names */
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover [data-testid="chat-list"] span[title]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover [data-testid="chat-list"] [role="row"] span[dir="auto"]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover header span[title]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover header [role="button"] span[dir="auto"]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover header span[dir="auto"]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover [data-testid="conversation-info-header"] span[dir="auto"]:hover,
+body.wa-privacy-active.wa-blur-names.wa-reveal-hover [data-testid="contact-name"]:hover {
+  filter: blur(0px) !important;
+}
+
+/* ==========================================================================
+   3. Last Message Preview Blurring
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-previews [data-testid="chat-list"] [role="row"] [class*="last-msg"],
+body.wa-privacy-active.wa-blur-previews [data-testid="chat-list"] [role="row"] [class*="preview"],
+body.wa-privacy-active.wa-blur-previews [data-testid="chat-list"] [role="row"] [data-testid="last-msg-status"] ~ *,
+body.wa-privacy-active.wa-blur-previews [data-testid="chat-list"] [role="row"] div > div:nth-child(2) > div:nth-child(2) {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Previews */
+body.wa-privacy-active.wa-blur-previews.wa-reveal-hover [data-testid="chat-list"] [role="row"] [class*="last-msg"]:hover,
+body.wa-privacy-active.wa-blur-previews.wa-reveal-hover [data-testid="chat-list"] [role="row"] [class*="preview"]:hover,
+body.wa-privacy-active.wa-blur-previews.wa-reveal-hover [data-testid="chat-list"] [role="row"] [data-testid="last-msg-status"] ~ *:hover,
+body.wa-privacy-active.wa-blur-previews.wa-reveal-hover [data-testid="chat-list"] [role="row"] div > div:nth-child(2) > div:nth-child(2):hover {
+  filter: blur(0px) !important;
+}
+
+/* ==========================================================================
+   4. Profile Pictures / Avatars Blurring
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-avatars img[src*="pps.whatsapp"],
+body.wa-privacy-active.wa-blur-avatars [data-testid="avatar"],
+body.wa-privacy-active.wa-blur-avatars [data-testid="chat-list"] img,
+body.wa-privacy-active.wa-blur-avatars header img,
+body.wa-privacy-active.wa-blur-avatars [data-testid="avatar-default-user"],
+body.wa-privacy-active.wa-blur-avatars [data-testid="avatar-default-group"] {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Avatars */
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover img[src*="pps.whatsapp"]:hover,
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover [data-testid="avatar"]:hover,
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover [data-testid="chat-list"] img:hover,
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover header img:hover,
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover [data-testid="avatar-default-user"]:hover,
+body.wa-privacy-active.wa-blur-avatars.wa-reveal-hover [data-testid="avatar-default-group"]:hover {
+  filter: blur(0px) !important;
+}
+
+/* ==========================================================================
+   5. Sent Media (Images, Videos, Stickers, Waveforms, Gifs) Blurring
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-media [data-testid="media-container"],
+body.wa-privacy-active.wa-blur-media [data-testid="msg-container"] img,
+body.wa-privacy-active.wa-blur-media [data-testid="msg-container"] video,
+body.wa-privacy-active.wa-blur-media [data-testid="msg-container"] [class*="image"],
+body.wa-privacy-active.wa-blur-media [data-testid="msg-container"] [class*="video"],
+body.wa-privacy-active.wa-blur-media [data-testid="msg-container"] [class*="media"],
+body.wa-privacy-active.wa-blur-media [data-testid="sticker-element"],
+body.wa-privacy-active.wa-blur-media [class*="sticker"],
+body.wa-privacy-active.wa-blur-media [class*="gif"],
+body.wa-privacy-active.wa-blur-media [class*="audio-player"] {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Media */
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="media-container"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="msg-container"] img:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="msg-container"] video:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="msg-container"] [class*="image"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="msg-container"] [class*="video"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="msg-container"] [class*="media"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [data-testid="sticker-element"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [class*="sticker"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [class*="gif"]:hover,
+body.wa-privacy-active.wa-blur-media.wa-reveal-hover [class*="audio-player"]:hover {
+  filter: blur(0px) !important;
+}
+
+/* ==========================================================================
+   6. Input Box Blurring (Blurs only when NOT focused to allow typing)
+   ========================================================================== */
+body.wa-privacy-active.wa-blur-input footer [role="textbox"]:not(:focus),
+body.wa-privacy-active.wa-blur-input [data-testid="conversation-text-input"]:not(:focus),
+body.wa-privacy-active.wa-blur-input footer .selectable-text-copyable:not(:focus) {
+  filter: blur(var(--wa-blur-radius)) !important;
+}
+
+/* Hover Reveal for Input Box when not focused */
+body.wa-privacy-active.wa-blur-input.wa-reveal-hover footer [role="textbox"]:not(:focus):hover,
+body.wa-privacy-active.wa-blur-input.wa-reveal-hover [data-testid="conversation-text-input"]:not(:focus):hover,
+body.wa-privacy-active.wa-blur-input.wa-reveal-hover footer .selectable-text-copyable:not(:focus):hover {
+  filter: blur(0px) !important;
+}

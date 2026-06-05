@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WA Privacy Shield | Absolute Privacy</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  
+  <div class="main-wrapper">
+    <!-- Background Gradient (TerraElix inspired) -->
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-brand">
+        <i class="ph-fill ph-shield-check" style="color: #ffffff; margin-right: 8px;"></i> WA Shield
+      </div>
+      <div class="nav-links">
+        <a href="#simulator">Sandbox</a>
+        <a href="#features">Features</a>
+        <a href="#installation">Install</a>
+        <a href="#security">Audit</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://github.com" target="_blank" class="btn-outline-small">View Source <i class="ph ph-github-logo"></i></a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span> 100% Offline • Zero Tracking
+        </div>
+        <h1 class="hero-title">
+          Invisible Protection.<br>
+          <span class="text-bold">Absolute Privacy.</span>
+        </h1>
+        <p class="hero-subtitle">
+          A state-of-the-art browser extension that dynamically blurs your WhatsApp Web screen. Defend your conversations from shoulder surfers with intelligent hover-reveal technology.
+        </p>
+        <div class="hero-cta-group">
+          <button class="btn btn-black" onclick="document.getElementById('installation').scrollIntoView()">
+            Get Started <i class="ph ph-arrow-up-right"></i>
+          </button>
+          <a href="#simulator" class="btn btn-transparent">
+            Try Sandbox
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Visual (Sandbox Simulator) -->
+      <div class="hero-visual">
+        <div class="sandbox-container" id="simulator">
+          <!-- Mock Settings Card -->
+          <div class="mock-card">
+            <div class="mock-card-header">
+              <div class="brand-title">
+                <i class="ph-fill ph-shield-check" style="color: #00a884; font-size: 1.2rem;"></i> Shield Status
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="isActive" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="mock-card-body">
+              <div class="setting-row">
+                <span>Blur Messages</span>
+                <label class="switch">
+                  <input type="checkbox" id="blurMessages" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="setting-row">
+                <span>Blur Previews</span>
+                <label class="switch">
+                  <input type="checkbox" id="blurPreviews" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="setting-row">
+                <span>Hover Reveal</span>
+                <label class="switch">
+                  <input type="checkbox" id="revealHover" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <div class="range-row">
+                <div class="range-header">
+                  <span>Intensity</span>
+                  <span id="radius-value">8px</span>
+                </div>
+                <input type="range" id="blurRadius" min="4" max="20" step="1" value="8">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mock WA Chat -->
+          <div class="mock-wa" id="waBody">
+            <div class="mock-wa-header">
+              <div class="wa-header-left">
+                <div class="wa-avatar hover-reveal-target self-avatar">JD</div>
+              </div>
+              <div class="wa-header-right">
+                <div class="wa-avatar hover-reveal-target group-avatar">G</div>
+                <div class="wa-contact-info">
+                  <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mock-wa-content">
+              <!-- Sidebar -->
+              <div class="wa-sidebar">
+                <div class="wa-chat-item active">
+                  <div class="wa-avatar hover-reveal-target group-avatar">G</div>
+                  <div class="wa-chat-text">
+                    <div class="wa-chat-top">
+                      <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
+                      <span class="wa-time">09:41</span>
+                    </div>
+                    <div class="wa-chat-preview hover-reveal-target">Sarah: The new design...</div>
+                  </div>
+                </div>
+                <div class="wa-chat-item">
+                  <div class="wa-avatar hover-reveal-target user-avatar-icon">A</div>
+                  <div class="wa-chat-text">
+                    <div class="wa-chat-top">
+                      <span class="wa-contact-name hover-reveal-target">Alex Rivera</span>
+                      <span class="wa-time">Yesterday</span>
+                    </div>
+                    <div class="wa-chat-preview hover-reveal-target">Did you check the latest commit?</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chat Area -->
+              <div class="wa-chat-area">
+                <div class="wa-bubble incoming">
+                  <span class="wa-sender hover-reveal-target">Sarah Jenkins</span>
+                  <p class="wa-msg-text">Check out this new layout I've been working on.</p>
+                </div>
+                <div class="wa-bubble outgoing">
+                  <p class="wa-msg-text">Looks absolutely phenomenal. Pushing to prod now. 🚀</p>
+                </div>
+                <div class="wa-input-area">
+                  <input type="text" class="wa-input hover-reveal-target" value="It's completely decoupled." readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Features Section (Using the 3-box reference layout) -->
+    <section id="features" class="bottom-grid">
+      <!-- Feature 1 -->
+      <div class="grid-box box-white box-large">
+        <div class="feature-icon-large"><i class="ph ph-lightning"></i></div>
+        <h2 class="box-title">Native Performance</h2>
+        <p class="box-desc">Built with 100% Vanilla JS & CSS. Zero external frameworks means blazing fast execution and a footprint under 50KB.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="grid-box box-white box-medium">
+        <div class="feature-icon-medium"><i class="ph ph-shield-check"></i></div>
+        <h2 class="box-title-small">Total Data Sovereignty</h2>
+        <p class="box-desc-small">Operates purely offline. We don't collect, track, or phone home. Your local storage is the only place settings reside.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="grid-box box-black box-medium">
+        <div class="feature-icon-medium text-green"><i class="ph ph-crosshair"></i></div>
+        <h2 class="box-title-small text-white">Surgical Precision</h2>
+        <p class="box-desc-small text-gray">Don't just blur the whole page. Target specific elements like avatars, media, or chat previews with granular controls.</p>
+      </div>
+    </section>
+    
+    <!-- Installation Section -->
+    <section id="installation" class="section-padding bg-light">
+      <div class="container text-center">
+        <h2 class="section-title">Deploy in Seconds</h2>
+        <p class="section-subtitle">Load the unpacked extension directly into any Chromium browser.</p>
+        
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Clone & Download</h3>
+            <p>Get the source code repository to your local machine.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Developer Mode</h3>
+            <p>Go to <code>chrome://extensions</code> and enable Developer Mode.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Load Unpacked</h3>
+            <p>Select the extension directory. You're fully protected.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Audit Section -->
+    <section id="security" class="section-padding bg-dark text-white">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">Cryptographically Verifiable</h2>
+          <p class="section-subtitle">Run our internal static analyzer to guarantee zero network leakage.</p>
+        </div>
+        
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot bg-red"></span><span class="dot bg-yellow"></span><span class="dot bg-green"></span>
+            <span class="terminal-title">audit.sh</span>
+          </div>
+          <div class="terminal-body">
+            <p class="cmd"><span class="prompt">$</span> node validate.js</p>
+            <p class="out">=== WA Privacy Shield Validator ===</p>
+            <p class="out success">✔ manifest.json is valid</p>
+            <p class="out success">✔ Zero external API calls detected</p>
+            <p class="out success">✔ Zero remote CDNs or fonts detected</p>
+            <p class="out highlight">🎉 SUCCESS: 100% Offline &amp; Structurally Sound.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand"><i class="ph-fill ph-shield-check"></i> WA Privacy Shield</div>
+        <div class="footer-links">
+          <a href="https://github.com">Source Code</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

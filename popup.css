@@ -1,0 +1,297 @@
+/* ==========================================================================
+   WA Privacy Shield - Popup Stylesheet
+   Premium dark theme matching WhatsApp Web's design language.
+   No external frameworks. Uses native CSS, HSL colors, and custom switches.
+   ========================================================================== */
+
+/* Reset & Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0b141a; /* WA Web deep dark grey */
+  color: #e9edef;
+  width: 360px;
+  font-size: 14px;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+.card {
+  background: #121b22; /* WA Web panel dark background */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border-radius: 0; /* Traditional extension popup borders */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background-color: #202c33; /* WA Web header dark grey */
+  border-bottom: 1px solid #2f3b43;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-svg {
+  filter: drop-shadow(0 0 4px rgba(0, 230, 118, 0.4));
+}
+
+.brand-text h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e9edef;
+  line-height: 1.2;
+}
+
+.brand-text .version {
+  font-size: 10px;
+  color: #8696a0;
+  display: block;
+}
+
+/* Content Area */
+.content {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: opacity 0.25s ease;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-title {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #00e676; /* Emerald highlight */
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.settings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Settings Row */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #202c33; /* Rounded item card */
+  border-radius: 8px;
+  border: 1px solid #233138;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.setting-row:hover {
+  background: #2a3942;
+  border-color: rgba(0, 230, 118, 0.2);
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  padding-right: 12px;
+}
+
+.setting-label {
+  font-size: 13.5px;
+  font-weight: 550;
+  color: #e9edef;
+}
+
+.setting-desc {
+  font-size: 11px;
+  color: #8696a0;
+  line-height: 1.3;
+}
+
+/* Switches (Toggle Elements) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3b4a54;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #f0f2f5;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+input:checked + .slider {
+  background-color: #00a884; /* Active WA green */
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Master Switch (Vivid Emerald Green) */
+.master-switch input:checked + .slider {
+  background-color: #00e676;
+  box-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+}
+
+/* Range Container (Blur Intensity) */
+.range-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #202c33;
+  border-radius: 8px;
+  border: 1px solid #233138;
+}
+
+.range-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background-color: #121b22;
+  color: #00e676;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 230, 118, 0.25);
+}
+
+.custom-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #3b4a54;
+  outline: none;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00e676;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease;
+}
+
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.custom-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #00e676;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  border: none;
+  transition: transform 0.1s ease;
+}
+
+.custom-range::-moz-range-thumb:hover {
+  transform: scale(1.25);
+}
+
+/* Footer Section */
+.footer {
+  background-color: #202c33;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #2f3b43;
+}
+
+.security-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8696a0;
+  font-size: 10.5px;
+}
+
+.secure-icon {
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Deactivated State */
+.card.disabled .content {
+  opacity: 0.45;
+}
+
+.card.disabled .content .switch input,
+.card.disabled .content input[type="range"] {
+  pointer-events: none; /* Disable interaction with sub-settings */
+}
