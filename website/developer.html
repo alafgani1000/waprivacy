@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portal | WA Privacy Shield</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    /* Developer Portal specific styles extending styles.css */
+    .dev-header {
+      padding: 80px 20px 40px;
+      text-align: center;
+      background: #050505;
+      border-bottom: 1px solid #222;
+    }
+    .dev-title {
+      font-size: 3rem;
+      font-weight: 600;
+      color: #a3c178;
+      margin-bottom: 16px;
+    }
+    .dev-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .dev-section {
+      margin-bottom: 60px;
+    }
+    .dev-section h2 {
+      font-size: 1.8rem;
+      border-bottom: 2px solid #333;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+    .dev-section p {
+      color: #bbb;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+    .dev-code-block {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      font-family: monospace;
+      color: #a3c178;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    .dev-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .dev-list li {
+      color: #bbb;
+      margin-bottom: 12px;
+      padding-left: 24px;
+      position: relative;
+    }
+    .dev-list li::before {
+      content: "→";
+      color: #a3c178;
+      position: absolute;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="main-wrapper">
+    <nav class="navbar" style="background: #000; border-bottom: 1px solid #222;">
+      <div class="nav-brand">
+        <i class="ph-fill ph-code" style="color: #a3c178; margin-right: 8px;"></i> Dev Portal
+      </div>
+      <div class="nav-actions">
+        <a href="index.html" class="btn-outline-small"><i class="ph ph-arrow-left"></i> Back to Home</a>
+      </div>
+    </nav>
+
+    <header class="dev-header">
+      <h1 class="dev-title">WA Privacy Shield Architecture</h1>
+      <p style="color: #888; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Technical documentation, security philosophy, and guidelines for contributing to the extension.</p>
+    </header>
+
+    <main class="dev-content">
+      
+      <section class="dev-section">
+        <h2>1. Architecture Overview</h2>
+        <p>WA Privacy Shield is built strictly using Vanilla JavaScript, HTML, and CSS under the Manifest V3 architecture. We deliberately avoid heavy frameworks (like React or Vue) or build tools (like Webpack) to ensure the extension footprint remains below 50KB and executes instantaneously upon page load.</p>
+        <ul class="dev-list">
+          <li><strong>content.js / content.css</strong>: injected directly into <code>web.whatsapp.com</code>. It manages DOM state and CSS filter injections.</li>
+          <li><strong>popup.html / popup.js</strong>: acts as the control interface. It communicates exclusively via local Chrome storage.</li>
+          <li><strong>No Background Scripts</strong>: We do not use persistent background service workers, freeing up browser memory entirely when the popup is closed.</li>
+        </ul>
+      </section>
+
+      <section class="dev-section">
+        <h2>2. Zero-Connection Security Model</h2>
+        <p>The core ethos of this project is absolute user privacy. As such, we adhere to a strict <strong>Zero-Connection</strong> rule:</p>
+        <ul class="dev-list">
+          <li>No external CDNs are allowed (all fonts use System UI stacks).</li>
+          <li>No analytics or tracking scripts (e.g., Google Analytics, Mixpanel).</li>
+          <li>No `fetch()` or `XMLHttpRequest` calls anywhere in the codebase.</li>
+          <li>Data is saved using only <code>chrome.storage.local</code>.</li>
+        </ul>
+      </section>
+
+      <section class="dev-section">
+        <h2>3. Local Validation & CI/CD</h2>
+        <p>We provide a local static analysis script (<code>validate.js</code>) to ensure no developer accidentally introduces external requests or violates the Manifest V3 constraints.</p>
+        <div class="dev-code-block">
+          # Run the validator locally before committing<br>
+          $ node validate.js<br><br>
+          === WA Privacy Shield Validator ===<br>
+          ✔ manifest.json is valid<br>
+          ✔ Zero external API calls detected<br>
+          ✔ Zero remote CDNs or fonts detected<br>
+          🎉 SUCCESS
+        </div>
+        <p>This same validator is integrated into our GitHub Actions. Additionally, the repository is configured to automatically deploy this website to GitHub Pages, and package `.zip` releases when new version tags are pushed to GitHub.</p>
+      </section>
+
+      <section class="dev-section">
+        <h2>4. How the Blur Logic Works</h2>
+        <p>Instead of heavy DOM manipulation, the extension simply attaches dynamic CSS classes (e.g., <code>.wa-blur-messages</code>) to the <code>&lt;body&gt;</code> element. The heavy lifting of targeting specific WhatsApp CSS selector trees is handled entirely by <code>content.css</code> using native CSS filters.</p>
+        <div class="dev-code-block">
+          /* Example from content.css */<br>
+          body.wa-privacy-active.wa-blur-messages div[data-testid="msg-container"] {<br>
+            &nbsp;&nbsp;filter: blur(8px);<br>
+            &nbsp;&nbsp;transition: filter 0.3s ease;<br>
+          }
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer" style="margin-top: 0;">
+      <div class="container footer-content">
+        <div class="footer-brand"><i class="ph-fill ph-shield-check"></i> WA Privacy Shield</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="https://github.com/alafgani1000/waprivacy">GitHub Repository</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
