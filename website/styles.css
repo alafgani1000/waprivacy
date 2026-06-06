@@ -251,6 +251,113 @@ input:checked + .slider:before { transform: translateX(18px); }
 #waBody.wa-privacy-active.wa-reveal-hover .hover-reveal-target:hover * { filter: blur(0) !important; opacity: 1 !important; }
 
 /* =========================================================================
+   Browser Mockup Window
+   ========================================================================= */
+.browser-window {
+  background: #111;
+  border-radius: 12px;
+  border: 1px solid #333;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+}
+
+.browser-header {
+  background: #202020;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid #333;
+  gap: 16px;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.browser-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.browser-url-bar {
+  flex: 1;
+  background: #111;
+  border-radius: 6px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #ccc;
+  font-size: 0.9rem;
+  gap: 8px;
+  border: 1px solid #333;
+}
+
+.browser-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #aaa;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.ext-icon {
+  background: rgba(163, 193, 120, 0.15);
+  color: #a3c178;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Adjust the mock card to drop from the toolbar */
+.standalone-sandbox .mock-card {
+  position: absolute !important;
+  top: 60px !important; 
+  right: 16px !important;
+  left: auto !important;
+  margin: 0 !important;
+  z-index: 100;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  border: 1px solid #333;
+}
+
+/* Add the little triangle arrow pointing to the icon */
+.standalone-sandbox .mock-card::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background: #111;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  transform: rotate(45deg);
+}
+
+.browser-viewport {
+  position: relative;
+  height: 500px;
+  background: #111;
+}
+.browser-viewport .mock-wa {
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  margin: 0;
+}
+
+/* =========================================================================
    Features Grid (3-column layout)
    ========================================================================= */
 .bottom-grid {

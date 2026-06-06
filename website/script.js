@@ -95,3 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize initial sandbox state
   updateSimulation();
 });
+
+/* =========================================================================
+   Mobile Detection Logic for Extension Download
+   ========================================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  if (isMobile) {
+    const downloadBtns = document.querySelectorAll('.download-btn');
+    const warnings = document.querySelectorAll('.mobile-warning');
+    
+    downloadBtns.forEach(btn => {
+      btn.innerHTML = 'Desktop Required <i class="ph ph-desktop"></i>';
+      btn.style.opacity = '0.5';
+      btn.style.pointerEvents = 'none';
+      btn.href = '#';
+    });
+    
+    warnings.forEach(warn => warn.classList.add('active'));
+  }
+});

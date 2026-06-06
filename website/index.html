@@ -6,11 +6,43 @@
   <title>WA Privacy Shield | Absolute Privacy</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    .narrative-title { font-size: 3.5rem; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.03em; line-height: 1.1; }
+    .narrative-subtitle { font-size: 1.2rem; line-height: 1.6; color: #ccc; margin-bottom: 40px; max-width: 600px; }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 40px; }
+    .use-case-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 16px; text-align: left; transition: transform 0.3s ease; }
+    .use-case-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.05); }
+    .use-case-icon { font-size: 2.5rem; color: #a3c178; margin-bottom: 16px; }
+    .bottom-cta { text-align: center; padding: 100px 20px; background: radial-gradient(circle at center, #1a2916 0%, #050505 70%); }
+    .mobile-warning { display: none; background: #3b2a1a; color: #ffb86c; padding: 12px; border-radius: 8px; margin-top: 16px; font-size: 0.95rem; text-align: left; align-items: center; gap: 8px; }
+    .mobile-warning.active { display: flex; }
+
+    /* Sandbox Standalone overrides */
+    .standalone-sandbox {
+      position: relative !important;
+      right: auto !important;
+      top: auto !important;
+      transform: none !important;
+      margin: 0 auto;
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .standalone-sandbox .mock-card {
+      position: relative !important;
+      left: auto !important;
+      margin-bottom: -40px;
+      z-index: 10;
+      transform: none !important;
+    }
+  </style>
 </head>
 <body>
   
   <div class="main-wrapper">
-    <!-- Background Gradient (TerraElix inspired) -->
+    <!-- Background Gradient -->
     <div class="bg-gradient"></div>
 
     <!-- Navigation -->
@@ -20,240 +52,278 @@
       </div>
       <div class="nav-links">
         <a href="#simulator">Sandbox</a>
-        <a href="#features">Features</a>
-        <a href="#installation">Install</a>
-        <a href="#security">Audit</a>
-        <a href="developer.html" style="color: #a3c178;">Developer Portal</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#installation">Setup</a>
+        <a href="#security">Security</a>
+        <a href="developer.html" style="color: #a3c178;">Developers</a>
       </div>
       <div class="nav-actions">
-        <a href="https://github.com/alafgani1000/waprivacy/releases/latest/download/waprivacy-extension.zip" class="btn-outline-small">Download ZIP <i class="ph ph-download-simple"></i></a>
-        <a href="https://github.com/alafgani1000/waprivacy" target="_blank" style="color: #fff; font-size: 1.5rem; margin-left: 12px; display: flex; align-items: center;"><i class="ph ph-github-logo"></i></a>
+        <a href="https://github.com/alafgani1000/waprivacy" target="_blank" style="color: #fff; font-size: 1.5rem; display: flex; align-items: center;"><i class="ph ph-github-logo"></i></a>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <main class="hero">
+    <main class="hero" style="padding-top: 60px;">
       <div class="hero-content">
         <div class="hero-badge">
-          <span class="pulse-dot"></span> 100% Offline • Zero Tracking
+          <span class="pulse-dot"></span> Protect your screen from shoulder surfers
         </div>
-        <h1 class="hero-title">
-          Invisible Protection.<br>
-          <span class="text-bold">Absolute Privacy.</span>
+        <h1 class="narrative-title">
+          Absolute Privacy in Public Spaces.
         </h1>
-        <p class="hero-subtitle">
-          A state-of-the-art browser extension that dynamically blurs your WhatsApp Web screen. Defend your conversations from shoulder surfers with intelligent hover-reveal technology.
+        <p class="narrative-subtitle">
+          A lightweight browser extension that dynamically blurs your private WhatsApp messages, contact names, and profile pictures. Hover to reveal, look away to hide.
         </p>
-        <div class="hero-cta-group">
-          <button class="btn btn-black" onclick="document.getElementById('installation').scrollIntoView()">
-            Get Started <i class="ph ph-arrow-up-right"></i>
-          </button>
-          <a href="#simulator" class="btn btn-transparent">
-            Try Sandbox
+        <div class="hero-cta-group" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+          <a href="https://github.com/alafgani1000/waprivacy/releases/latest/download/waprivacy-extension.zip" class="btn btn-black download-btn" id="hero-download">
+            Download Extension Free <i class="ph ph-download-simple"></i>
           </a>
+          <div class="mobile-warning" id="hero-mobile-warn">
+            <i class="ph ph-warning"></i> This is a Desktop Chrome Extension. Please visit this site on your laptop/PC to install.
+          </div>
         </div>
       </div>
 
-      <!-- Hero Visual (Sandbox Simulator) -->
-      <div class="hero-visual">
-        <div class="sandbox-container" id="simulator">
-          <!-- Mock Settings Card -->
-          <div class="mock-card">
-            <div class="mock-card-header">
-              <div class="brand-title">
-                <i class="ph-fill ph-shield-check" style="color: #00a884; font-size: 1.2rem;"></i> Shield Status
-              </div>
-              <label class="switch">
-                <input type="checkbox" id="isActive" checked>
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <div class="mock-card-body">
-              <div class="setting-row">
-                <span>Blur Messages</span>
-                <label class="switch">
-                  <input type="checkbox" id="blurMessages" checked>
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div class="setting-row">
-                <span>Blur Previews</span>
-                <label class="switch">
-                  <input type="checkbox" id="blurPreviews" checked>
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div class="setting-row">
-                <span>Hover Reveal</span>
-                <label class="switch">
-                  <input type="checkbox" id="revealHover" checked>
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div class="range-row">
-                <div class="range-header">
-                  <span>Intensity</span>
-                  <span id="radius-value">8px</span>
-                </div>
-                <input type="range" id="blurRadius" min="4" max="20" step="1" value="8">
-              </div>
-            </div>
-          </div>
-
-          <!-- Mock WA Chat -->
-          <div class="mock-wa" id="waBody">
-            <div class="mock-wa-header">
-              <div class="wa-header-left">
-                <div class="wa-avatar hover-reveal-target self-avatar">JD</div>
-              </div>
-              <div class="wa-header-right">
-                <div class="wa-avatar hover-reveal-target group-avatar">G</div>
-                <div class="wa-contact-info">
-                  <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="mock-wa-content">
-              <!-- Sidebar -->
-              <div class="wa-sidebar">
-                <div class="wa-chat-item active">
-                  <div class="wa-avatar hover-reveal-target group-avatar">G</div>
-                  <div class="wa-chat-text">
-                    <div class="wa-chat-top">
-                      <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
-                      <span class="wa-time">09:41</span>
-                    </div>
-                    <div class="wa-chat-preview hover-reveal-target">Sarah: The new design...</div>
-                  </div>
-                </div>
-                <div class="wa-chat-item">
-                  <div class="wa-avatar hover-reveal-target user-avatar-icon">A</div>
-                  <div class="wa-chat-text">
-                    <div class="wa-chat-top">
-                      <span class="wa-contact-name hover-reveal-target">Alex Rivera</span>
-                      <span class="wa-time">Yesterday</span>
-                    </div>
-                    <div class="wa-chat-preview hover-reveal-target">Did you check the latest commit?</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Chat Area -->
-              <div class="wa-chat-area">
-                <div class="wa-bubble incoming">
-                  <span class="wa-sender hover-reveal-target">Sarah Jenkins</span>
-                  <p class="wa-msg-text">Check out this new layout I've been working on.</p>
-                </div>
-                <div class="wa-bubble outgoing">
-                  <p class="wa-msg-text">Looks absolutely phenomenal. Pushing to prod now. 🚀</p>
-                </div>
-                <div class="wa-input-area">
-                  <input type="text" class="wa-input hover-reveal-target" value="It's completely decoupled." readonly>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <!-- Hero Visual (Static High-End Mockup) -->
+      <div class="hero-visual" style="display: flex; justify-content: center; align-items: center; padding-left: 40px;">
+        <img src="hero_image.png" alt="WA Privacy Shield 3D Mockup" style="width: 100%; max-width: 550px; transform: perspective(1000px) rotateY(-12deg) rotateX(4deg); -webkit-mask-image: radial-gradient(circle at center, black 65%, transparent 100%); mask-image: radial-gradient(circle at center, black 65%, transparent 100%); opacity: 0.95;">
       </div>
     </main>
 
-    <!-- Features Section (Using the 3-box reference layout) -->
-    <section id="features" class="bottom-grid">
-      <!-- Feature 1 -->
-      <div class="grid-box box-white box-large">
-        <div class="feature-icon-large"><i class="ph ph-lightning"></i></div>
-        <h2 class="box-title">Native Performance</h2>
-        <p class="box-desc">Built with 100% Vanilla JS & CSS. Zero external frameworks means blazing fast execution and a footprint under 50KB.</p>
+    <!-- Interactive Sandbox Section -->
+    <section id="simulator" class="section-padding bg-dark text-white" style="background: #080a08; border-top: 1px solid #1a2916; overflow: hidden;">
+      <div class="container text-center" style="margin-bottom: 60px;">
+        <h2 class="section-title">Experience the Privacy</h2>
+        <p class="section-subtitle">Interact with the mock extension panel below to see how it dynamically protects your chats.</p>
       </div>
+      
+      <div class="container">
+        <div class="sandbox-container standalone-sandbox">
+          
+          <div class="browser-window">
+            
+            <!-- Browser Header -->
+            <div class="browser-header">
+              <div class="browser-dots">
+                <span class="dot bg-red" style="background: #ff5f56;"></span>
+                <span class="dot bg-yellow" style="background: #ffbd2e;"></span>
+                <span class="dot bg-green" style="background: #27c93f;"></span>
+              </div>
+              <div class="browser-url-bar">
+                <i class="ph-fill ph-lock-key"></i> https://web.whatsapp.com
+              </div>
+              <div class="browser-toolbar">
+                <i class="ph ph-puzzle-piece"></i>
+                <div class="ext-icon"><i class="ph-fill ph-shield-check"></i></div>
+              </div>
+            </div>
 
-      <!-- Feature 2 -->
-      <div class="grid-box box-white box-medium">
-        <div class="feature-icon-medium"><i class="ph ph-shield-check"></i></div>
-        <h2 class="box-title-small">Total Data Sovereignty</h2>
-        <p class="box-desc-small">Operates purely offline. We don't collect, track, or phone home. Your local storage is the only place settings reside.</p>
+            <!-- Browser Viewport -->
+            <div class="browser-viewport">
+              
+              <!-- Mock Settings Card (Acts as the Extension Popup) -->
+              <div class="mock-card">
+                <div class="mock-card-header">
+                  <div class="brand-title">
+                    <i class="ph-fill ph-shield-check" style="color: #00a884; font-size: 1.2rem;"></i> Try it here!
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" id="isActive" checked>
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+                <div class="mock-card-body">
+                  <div class="setting-row">
+                    <span>Blur Messages</span>
+                    <label class="switch">
+                      <input type="checkbox" id="blurMessages" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                  <div class="setting-row">
+                    <span>Hover Reveal</span>
+                    <label class="switch">
+                      <input type="checkbox" id="revealHover" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                  <div class="range-row">
+                    <div class="range-header">
+                      <span>Intensity</span>
+                      <span id="radius-value">8px</span>
+                    </div>
+                    <input type="range" id="blurRadius" min="4" max="20" step="1" value="8">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mock WA Chat -->
+              <div class="mock-wa" id="waBody" style="margin: 0; box-shadow: none;">
+                <div class="mock-wa-header">
+                  <div class="wa-header-left">
+                    <div class="wa-avatar hover-reveal-target self-avatar">JD</div>
+                  </div>
+                  <div class="wa-header-right">
+                    <div class="wa-avatar hover-reveal-target group-avatar">G</div>
+                    <div class="wa-contact-info">
+                      <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mock-wa-content">
+                  <!-- Sidebar -->
+                  <div class="wa-sidebar">
+                    <div class="wa-chat-item active">
+                      <div class="wa-avatar hover-reveal-target group-avatar">G</div>
+                      <div class="wa-chat-text">
+                        <div class="wa-chat-top">
+                          <span class="wa-contact-name hover-reveal-target">Project Alpha</span>
+                          <span class="wa-time">09:41</span>
+                        </div>
+                        <div class="wa-chat-preview hover-reveal-target">Hover to reveal this text...</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Chat Area -->
+                  <div class="wa-chat-area">
+                    <div class="wa-bubble incoming">
+                      <span class="wa-sender hover-reveal-target">Sarah Jenkins</span>
+                      <p class="wa-msg-text">No one can read this over your shoulder.</p>
+                    </div>
+                    <div class="wa-bubble outgoing">
+                      <p class="wa-msg-text">Exactly! Hover your mouse here to read it. 🚀</p>
+                    </div>
+                    <div class="wa-input-area">
+                      <input type="text" class="wa-input hover-reveal-target" value="Type a message..." readonly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- /browser-viewport -->
+          </div> <!-- /browser-window -->
+          
+        </div>
       </div>
+    </section>
 
-      <!-- Feature 3 -->
-      <div class="grid-box box-black box-medium">
-        <div class="feature-icon-medium text-green"><i class="ph ph-crosshair"></i></div>
-        <h2 class="box-title-small text-white">Surgical Precision</h2>
-        <p class="box-desc-small text-gray">Don't just blur the whole page. Target specific elements like avatars, media, or chat previews with granular controls.</p>
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="section-padding bg-dark text-white">
+      <div class="container text-center">
+        <h2 class="section-title">Built for the Modern Workflow</h2>
+        <p class="section-subtitle">Never worry about prying eyes again, no matter where you choose to work.</p>
+        
+        <div class="use-cases-grid">
+          <div class="use-case-card">
+            <i class="ph ph-coffee use-case-icon"></i>
+            <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Coffee Shops</h3>
+            <p style="color: #aaa; line-height: 1.5; font-size: 0.95rem;">Work comfortably in public cafes. Keep your confidential client chats and personal messages completely obscured from people sitting nearby.</p>
+          </div>
+          <div class="use-case-card">
+            <i class="ph ph-buildings use-case-icon"></i>
+            <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Open Offices</h3>
+            <p style="color: #aaa; line-height: 1.5; font-size: 0.95rem;">Prevent colleagues from accidentally reading your screen as they walk past your desk. Maintain professionalism and privacy effortlessly.</p>
+          </div>
+          <div class="use-case-card">
+            <i class="ph ph-train use-case-icon"></i>
+            <h3 style="font-size: 1.2rem; margin-bottom: 12px;">Daily Commute</h3>
+            <p style="color: #aaa; line-height: 1.5; font-size: 0.95rem;">Chat safely on trains, buses, or flights. The dynamic hover-reveal ensures you only expose exactly what you are reading at that exact second.</p>
+          </div>
+        </div>
       </div>
     </section>
     
     <!-- Installation Section -->
     <section id="installation" class="section-padding bg-light">
       <div class="container text-center">
-        <h2 class="section-title">Deploy in Seconds</h2>
-        <p class="section-subtitle">Load the unpacked extension directly into any Chromium browser.</p>
+        <h2 class="section-title">Active in 60 Seconds</h2>
+        <p class="section-subtitle">Since we respect your privacy, this extension is side-loaded. No accounts required.</p>
         
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">1</div>
-            <h3>Download Release</h3>
-            <p>Get the latest compiled extension ZIP file and extract it to a folder.</p>
-            <a href="https://github.com/alafgani1000/waprivacy/releases/latest/download/waprivacy-extension.zip" class="btn-outline-small" style="color: #4b663b; border-color: rgba(75, 102, 59, 0.3); margin-top: 16px; padding: 6px 12px;">
-              <i class="ph ph-download-simple"></i> waprivacy.zip
-            </a>
+            <h3>Download</h3>
+            <p>Grab the latest `.zip` release and extract it to a folder on your computer.</p>
           </div>
           <div class="step-card">
             <div class="step-number">2</div>
             <h3>Developer Mode</h3>
-            <p>Go to <code>chrome://extensions</code> in your browser and enable Developer Mode.</p>
+            <p>Open <code>chrome://extensions</code> in your Chromium browser and enable "Developer Mode".</p>
           </div>
           <div class="step-card">
             <div class="step-number">3</div>
             <h3>Load Unpacked</h3>
-            <p>Click "Load unpacked" and select the folder you extracted in Step 1.</p>
+            <p>Click "Load unpacked", select your extracted folder, and your chats are instantly protected.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Security Audit Section -->
+    <!-- Security Section -->
     <section id="security" class="section-padding bg-dark text-white">
       <div class="container">
         <div class="text-center">
-          <h2 class="section-title">Cryptographically Verifiable</h2>
-          <p class="section-subtitle">Run our internal static analyzer to guarantee zero network leakage.</p>
+          <h2 class="section-title">Zero Trust. 100% Offline.</h2>
+          <p class="section-subtitle" style="max-width: 800px; margin: 0 auto 40px auto; line-height: 1.8;">
+            We don't want your data. The WA Privacy Shield architecture operates entirely offline within your local browser. No analytics, no CDNs, no remote servers.
+          </p>
         </div>
         
         <div class="terminal-window">
           <div class="terminal-header">
             <span class="dot bg-red"></span><span class="dot bg-yellow"></span><span class="dot bg-green"></span>
-            <span class="terminal-title">audit.sh</span>
+            <span class="terminal-title">Security Audit Output</span>
           </div>
           <div class="terminal-body">
-            <p class="cmd"><span class="prompt">$</span> node validate.js</p>
-            <p class="out">=== WA Privacy Shield Validator ===</p>
-            <p class="out success">✔ manifest.json is valid</p>
+            <p class="cmd"><span class="prompt">$</span> Checking for external connections...</p>
             <p class="out success">✔ Zero external API calls detected</p>
             <p class="out success">✔ Zero remote CDNs or fonts detected</p>
-            <p class="out highlight">🎉 SUCCESS: 100% Offline &amp; Structurally Sound.</p>
+            <p class="out success">✔ No background tracking workers found</p>
+            <p class="out highlight">🎉 Result: 100% Offline &amp; Safe.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="section-padding text-white" style="background: #0a0a0a;">
+    <section id="faq" class="section-padding bg-dark text-white" style="border-top: 1px solid #1a1a1a;">
       <div class="container">
-        <h2 class="section-title text-center">Frequently Asked Questions</h2>
-        <p class="section-subtitle text-center" style="margin-bottom: 40px;">Everything you need to know about WA Privacy Shield.</p>
+        <div class="text-center" style="margin-bottom: 40px;">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Common questions from our users.</p>
+        </div>
+        
         <div style="display: grid; gap: 24px; max-width: 800px; margin: 0 auto;">
           <div style="background: #111; padding: 24px; border-radius: 12px; border: 1px solid #333;">
-            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-question"></i> What is this application?</h3>
-            <p style="color: #aaa; line-height: 1.6;">WA Privacy Shield is a Chrome extension designed to protect your WhatsApp Web screen from shoulder surfers in public spaces or offices. It dynamically blurs your messages, contact names, and profile pictures. Elements are only revealed smoothly when you hover over them with your mouse.</p>
+            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-user-circle"></i> Do I need to create an account?</h3>
+            <p style="color: #aaa; line-height: 1.6; margin: 0;">No, absolutely not. WA Privacy Shield operates 100% locally. There is no signup, no login, and no premium subscriptions. Just install it and use it instantly.</p>
           </div>
           <div style="background: #111; padding: 24px; border-radius: 12px; border: 1px solid #333;">
-            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-download"></i> How do I download and install it?</h3>
-            <p style="color: #aaa; line-height: 1.6;">Simply click the <strong>Download ZIP</strong> button at the top of this page. Once downloaded, extract the ZIP file to a folder. Next, open your Chromium-based browser (Chrome, Edge, Brave), go to <code>chrome://extensions</code>, toggle "Developer mode" on, click "Load unpacked", and select the folder you just extracted.</p>
+            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-browser"></i> Does this work on mobile phones?</h3>
+            <p style="color: #aaa; line-height: 1.6; margin: 0;">No, this extension is specifically designed for Desktop Chromium browsers (Google Chrome, Microsoft Edge, Brave) running WhatsApp Web on a laptop or PC.</p>
           </div>
           <div style="background: #111; padding: 24px; border-radius: 12px; border: 1px solid #333;">
-            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-shield-check"></i> Is it completely safe to use?</h3>
-            <p style="color: #aaa; line-height: 1.6;"><strong>Absolutely.</strong> Security and privacy are our core principles. This extension operates 100% offline. It contains zero third-party libraries, no external font or CDN requests, and no tracking analytics scripts. Your chat data never leaves your local browser environment. You can even visit the Developer Portal or view our open-source code to verify this yourself.</p>
+            <h3 style="margin-bottom: 12px; font-size: 1.2rem; color: #a3c178; display: flex; align-items: center; gap: 8px;"><i class="ph ph-shield-check"></i> Can anyone steal my chat data?</h3>
+            <p style="color: #aaa; line-height: 1.6; margin: 0;">No. Our extension has zero tracking scripts, no external server connections, and zero third-party dependencies. Your data physically cannot leave your computer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta text-white">
+      <div class="container">
+        <h2 style="font-size: 3rem; font-weight: 600; margin-bottom: 24px; letter-spacing: -0.02em;">Take Control of Your Screen.</h2>
+        <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 40px;">Join thousands of professionals keeping their conversations private.</p>
+        
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <a href="https://github.com/alafgani1000/waprivacy/releases/latest/download/waprivacy-extension.zip" class="btn download-btn" id="bottom-download" style="background: #a3c178; color: #000; padding: 20px 40px; font-size: 1.2rem; font-weight: 600;">
+            Download Extension ZIP <i class="ph ph-download-simple" style="font-weight: bold;"></i>
+          </a>
+          <div class="mobile-warning" id="bottom-mobile-warn">
+            <i class="ph ph-warning"></i> Open this page on a Desktop browser to install.
           </div>
         </div>
       </div>
@@ -263,8 +333,8 @@
       <div class="container footer-content">
         <div class="footer-brand"><i class="ph-fill ph-shield-check"></i> WA Privacy Shield</div>
         <div class="footer-links">
-          <a href="https://github.com">Source Code</a>
-          <a href="#">Privacy Policy</a>
+          <a href="developer.html" style="color: #a3c178;">Developer Portal</a>
+          <a href="https://github.com/alafgani1000/waprivacy">Source Code</a>
         </div>
       </div>
     </footer>
